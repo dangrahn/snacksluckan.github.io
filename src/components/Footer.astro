@@ -2,7 +2,7 @@
 import { siteConfig } from '~/site.config'
 import { withBase } from '~/utils'
 import { Image } from 'astro:assets'
-import logoMark from '~/assets/logo-mark.png'
+import logoLucka from '~/assets/logo-lucka.png'
 ---
 
 <footer class="border-t border-sand/10 bg-ink">
@@ -11,7 +11,7 @@ import logoMark from '~/assets/logo-mark.png'
   >
     <div class="flex flex-col gap-3">
       <a href={withBase('')} class="flex items-center gap-2.5 text-sand">
-        <Image src={logoMark} alt="" width={84} class="h-7 w-auto" />
+        <Image src={logoLucka} alt="" width={72} class="h-5 w-auto" />
         <span class="font-display text-lg font-semibold">{siteConfig.name}</span>
       </a>
       <p class="max-w-xs text-sm text-caption">

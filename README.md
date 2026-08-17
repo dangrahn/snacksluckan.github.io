@@ -35,7 +35,7 @@ Until `appsScriptUrl` is set, the form shows a fallback message pointing to `hej
 
 ## Logo assets
 
-`src/assets/logo.png` is the canonical logo artwork. `node scripts/derive-logo-assets.mjs` regenerates the derived assets from it: `src/assets/logo-mark.png` (transparent mark for header/footer), `public/favicon.png` and `public/apple-touch-icon.png`.
+`src/assets/logo.png` is the canonical logo artwork. `node scripts/derive-logo-assets.mjs` regenerates the derived assets from it: `src/assets/logo-lucka.png` (transparent lucka mark for header/footer — the full burst is illegible that small), `public/favicon.png` and `public/apple-touch-icon.png`.
 
 ## Images
 

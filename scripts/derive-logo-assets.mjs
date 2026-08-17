@@ -1,22 +1,24 @@
 // Derives site logo assets from the canonical artwork in src/assets/logo.png:
-//   src/assets/logo-mark.png  – burst + lucka only, background keyed to transparent
+//   src/assets/logo-lucka.png – just the lucka, keyed transparent; the full burst
+//                               is illegible at header/footer sizes so the compact
+//                               lockup is lucka + text wordmark
 //   public/favicon.png        – square mark crop on brand background, 512 px
 //   public/apple-touch-icon.png – same crop, 180 px
 // Run from the repo root: node scripts/derive-logo-assets.mjs
 import sharp from 'sharp'
 
 const SOURCE = 'src/assets/logo.png'
-const BG = { r: 14, g: 34, b: 33 }
+const BG = { r: 1, g: 23, b: 31 }
 // Alpha ramp: fully transparent below NEAR, fully opaque above FAR (Euclidean RGB distance)
 const NEAR = 30
 const FAR = 90
-const MARK_CROP = { left: 40, top: 60, width: 1174, height: 890 }
-const ICON_CROP = { left: 157, top: 0, width: 940, height: 940 }
+const LUCKA_CROP = { left: 448, top: 742, width: 340, height: 176 }
+const ICON_CROP = { left: 173, top: 35, width: 890, height: 890 }
 
-async function writeMark() {
+async function writeKeyedCrop(crop, width, file) {
   const { data, info } = await sharp(SOURCE)
-    .extract(MARK_CROP)
-    .resize({ width: 800 })
+    .extract(crop)
+    .resize({ width })
     .ensureAlpha()
     .raw()
     .toBuffer({ resolveWithObject: true })
@@ -29,14 +31,14 @@ async function writeMark() {
 
   await sharp(data, { raw: { width: info.width, height: info.height, channels: info.channels } })
     .png()
-    .toFile('src/assets/logo-mark.png')
+    .toFile(file)
 }
 
 async function writeIcon(size, file) {
   await sharp(SOURCE).extract(ICON_CROP).resize(size, size).png().toFile(file)
 }
 
-await writeMark()
+await writeKeyedCrop(LUCKA_CROP, 300, 'src/assets/logo-lucka.png')
 await writeIcon(512, 'public/favicon.png')
 await writeIcon(180, 'public/apple-touch-icon.png')
 console.log('Logo assets written.')
