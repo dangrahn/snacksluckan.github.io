@@ -13,10 +13,12 @@ npm run preview
 
 ## Deployment
 
-Pushing to `main` triggers `.github/workflows/astro.yml`, which builds and deploys to GitHub Pages. One-time setup:
+Pushing to `main` triggers `.github/workflows/astro.yml`, which builds and deploys to GitHub Pages. Until the custom domain is activated, the site serves at `https://danielgrahn.com/snacksluckan.github.io/`.
 
-1. Repo **Settings → Pages → Source: GitHub Actions**.
-2. Custom domain: `public/CNAME` contains `snacksluckan.se`. At the DNS registrar, point the apex to GitHub Pages (A records `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`; optionally `www` CNAME → `dangrahn.github.io`), then enable **Enforce HTTPS** in the Pages settings. Until DNS is live the site serves at `https://dangrahn.github.io/snacksluckan.github.io/`.
+Activating snacksluckan.se (one-time):
+
+1. At the DNS registrar, point the apex to GitHub Pages: A records `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` (optionally `www` CNAME → `dangrahn.github.io`).
+2. Once DNS resolves, set **Settings → Pages → Custom domain** to `snacksluckan.se` and enable **Enforce HTTPS**. Note: with workflow-based builds the `public/CNAME` file alone does not register the domain — it must be set in the Pages settings (kept in the repo for consistency).
 
 ## Lead form backend (Google Apps Script)
 
