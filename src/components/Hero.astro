@@ -1,66 +1,52 @@
 ---
-import MachineImage from '~/components/MachineImage.astro'
+import { Image } from 'astro:assets'
+import hero from '~/assets/hero.png'
 
 const chips = ['0 kr att komma igång', '10 % provision', 'Ingen bindningstid (3+3)', 'Kort & Swish']
 ---
 
-<section class="relative overflow-hidden">
-  <div
-    class="mx-auto grid max-w-6xl items-center gap-12 px-5 pt-16 pb-20 md:px-8 lg:grid-cols-2 lg:gap-16 lg:pt-24 lg:pb-28"
-  >
-    <div>
-      <p class="mb-4 text-sm font-semibold tracking-widest text-caption uppercase">
-        Varuautomater i södra Sverige
-      </p>
-      <h1
-        class="font-display text-4xl leading-tight font-bold text-cream sm:text-5xl lg:text-[3.4rem]"
+<section>
+  <Image
+    src={hero}
+    alt="Snacksluckans varuautomat i en kontorslobby – snacks när du vill, var du vill"
+    widths={[640, 1024, 1440, 1672]}
+    sizes="100vw"
+    loading="eager"
+    fetchpriority="high"
+    class="h-auto w-full"
+  />
+  <div class="mx-auto max-w-6xl px-5 pt-16 pb-20 md:px-8 lg:pt-20 lg:pb-28">
+    <p class="mb-4 text-sm font-semibold tracking-widest text-caption uppercase">
+      Varuautomater i södra Sverige
+    </p>
+    <h1
+      class="font-display text-4xl leading-tight font-bold text-cream sm:text-5xl lg:text-[3.4rem]"
+    >
+      En välfylld automat, nöjdare besökare och
+      <span class="text-sand">provision varje månad</span>
+      – utan att lyfta ett finger.
+    </h1>
+    <p class="mt-6 max-w-xl text-lg text-mild">
+      Tre månaders prov, ingen kostnad, vi sköter allt. Ni bidrar med en kvadratmeter golv och ett
+      eluttag – vi står för automat, varor, påfyllning och service.
+    </p>
+    <div class="mt-8 flex flex-wrap items-center gap-4">
+      <a
+        href="#offert"
+        class="rounded-full bg-amber px-7 py-3.5 font-display text-base font-semibold text-ink transition-colors hover:bg-ember hover:text-cream"
       >
-        En välfylld automat, nöjdare besökare och
-        <span class="text-sand">provision varje månad</span>
-        – utan att lyfta ett finger.
-      </h1>
-      <p class="mt-6 max-w-xl text-lg text-mild">
-        Tre månaders prov, ingen kostnad, vi sköter allt. Ni bidrar med en kvadratmeter golv och ett
-        eluttag – vi står för automat, varor, påfyllning och service.
-      </p>
-      <div class="mt-8 flex flex-wrap items-center gap-4">
-        <a
-          href="#offert"
-          class="rounded-full bg-amber px-7 py-3.5 font-display text-base font-semibold text-ink transition-colors hover:bg-ember hover:text-cream"
-        >
-          Få en offert
-        </a>
-        <a href="#sa-funkar-det" class="font-display text-base text-sand hover:text-cream">
-          Så funkar det ↓
-        </a>
-      </div>
-      <ul class="mt-10 flex flex-wrap gap-2.5">
-        {
-          chips.map((chip) => (
-            <li class="rounded-full border border-sand/25 px-4 py-1.5 text-sm text-mild">{chip}</li>
-          ))
-        }
-      </ul>
+        Få en offert
+      </a>
+      <a href="#sa-funkar-det" class="font-display text-base text-sand hover:text-cream">
+        Så funkar det ↓
+      </a>
     </div>
-    <div class="relative">
-      <svg
-        viewBox="0 0 400 400"
-        class="absolute -top-16 left-1/2 w-[130%] -translate-x-1/2 text-sand/15"
-        aria-hidden="true"
-        fill="none"
-      >
-        <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <path
-            d="M200 30v50M120 45l25 48M280 45l-25 48M60 90l45 38M340 90l-45 38M30 160l55 20M370 160l-55 20"
-          ></path>
-        </g>
-        <circle cx="90" cy="50" r="4" fill="currentColor"></circle>
-        <circle cx="310" cy="50" r="4" fill="currentColor"></circle>
-        <circle cx="45" cy="130" r="4" fill="currentColor"></circle>
-        <circle cx="355" cy="130" r="4" fill="currentColor"></circle>
-      </svg>
-      {/* TODO: replace with real photo of a branded machine on location */}
-      <MachineImage eager class="relative mx-auto max-w-md lg:max-w-lg" />
-    </div>
+    <ul class="mt-10 flex flex-wrap gap-2.5">
+      {
+        chips.map((chip) => (
+          <li class="rounded-full border border-sand/25 px-4 py-1.5 text-sm text-mild">{chip}</li>
+        ))
+      }
+    </ul>
   </div>
 </section>
