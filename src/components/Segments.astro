@@ -1,6 +1,4 @@
 ---
-import MachineImage from '~/components/MachineImage.astro'
-
 const segments = [
   {
     title: 'Träningsanläggningar',
@@ -44,7 +42,7 @@ const criteria = [
       ))
     }
   </div>
-  <div class="mt-12 grid items-center gap-10 lg:grid-cols-[1fr_20rem]">
+  <div class="mt-12">
     <div class="rounded-3xl border border-dashed border-sand/25 p-7">
       <h3 class="font-display text-lg font-semibold text-cream">Passar er plats in?</h3>
       <ul class="mt-4 space-y-2.5">
@@ -74,10 +72,5 @@ const criteria = [
         Osäker? Skicka en förfrågan ändå – vi svarar snabbt och ärligt om platsen bär en automat.
       </p>
     </div>
-    {/* TODO: replace with real photo of a machine on location */}
-    <MachineImage
-      caption="Snacksluckan på plats – foto kommer."
-      class="mx-auto w-full max-w-xs lg:max-w-none"
-    />
   </div>
 </section>

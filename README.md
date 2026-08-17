@@ -37,6 +37,6 @@ Until `appsScriptUrl` is set, the form shows a fallback message pointing to `hej
 
 `src/assets/logo.png` is the canonical logo artwork. `node scripts/derive-logo-assets.mjs` regenerates the derived assets from it: `src/assets/logo-mark.png` (transparent mark for header/footer), `public/favicon.png` and `public/apple-touch-icon.png`.
 
-## Image placeholders
+## Images
 
-Real photos of branded machines on location should eventually replace the render — search for `TODO: replace with real photo` (hero, Så funkar det, Passar er?) and swap the image import in `src/components/MachineImage.astro`.
+The page uses exactly two images: the hero banner (`src/assets/hero.png`, full-width in `Hero.astro`) and the secondary product image (`src/assets/machine.png`, shown in Så funkar det via `src/components/MachineImage.astro`). A real photo of a branded machine on location can eventually replace the secondary render — swap the import in `MachineImage.astro`.

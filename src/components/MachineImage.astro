@@ -2,8 +2,8 @@
 import { Image } from 'astro:assets'
 import machine from '~/assets/machine.png'
 
-// TODO: replace with real photos of branded machines on location when available —
-// swap the `machine` import (or add a `src` prop) per placement.
+// TODO: replace with a real photo of a branded machine on location when available —
+// swap the `machine` import.
 interface Props {
   caption?: string
   eager?: boolean
@@ -14,7 +14,7 @@ const { caption, eager = false, class: className = '' } = Astro.props
 ---
 
 <figure class={className}>
-  <div class="overflow-hidden rounded-3xl bg-black ring-1 ring-sand/20">
+  <div class="overflow-hidden rounded-3xl ring-1 ring-sand/20">
     <Image
       src={machine}
       alt="Snacksluckans helfolierade varuautomat fylld med snacks, bars och kalla drycker"
