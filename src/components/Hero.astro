@@ -6,15 +6,28 @@ const chips = ['0 kr att komma igång', '10 % provision', 'Ingen bindningstid (3
 ---
 
 <section>
-  <Image
-    src={hero}
-    alt="Snacksluckans varuautomat i en kontorslobby – snacks när du vill, var du vill"
-    widths={[640, 1024, 1440, 1672]}
-    sizes="100vw"
-    loading="eager"
-    fetchpriority="high"
-    class="h-auto w-full"
-  />
+  {
+    /* The photo is 1672px wide: show it at native size and fill wider viewports
+      with a blurred echo instead of upscaling it */
+  }
+  <div class="relative overflow-hidden">
+    <Image
+      src={hero}
+      alt=""
+      aria-hidden="true"
+      width={640}
+      class="absolute inset-0 hidden h-full w-full scale-110 object-cover opacity-60 blur-2xl min-[1672px]:block"
+    />
+    <Image
+      src={hero}
+      alt="Snacksluckans varuautomat i en kontorslobby – snacks när du vill, var du vill"
+      widths={[640, 1024, 1440, 1672]}
+      sizes="(min-width: 1672px) 1672px, 100vw"
+      loading="eager"
+      fetchpriority="high"
+      class="relative mx-auto h-auto w-full max-w-[1672px]"
+    />
+  </div>
   <div class="mx-auto max-w-6xl px-5 pt-16 pb-20 md:px-8 lg:pt-20 lg:pb-28">
     <p class="mb-4 text-sm font-semibold tracking-widest text-caption uppercase">
       Varuautomater i södra Sverige
