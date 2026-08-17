@@ -1,0 +1,38 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro'
+import Header from '~/components/Header.astro'
+import Hero from '~/components/Hero.astro'
+import UspGrid from '~/components/UspGrid.astro'
+import HowItWorks from '~/components/HowItWorks.astro'
+import Segments from '~/components/Segments.astro'
+import Sortiment from '~/components/Sortiment.astro'
+import Faq from '~/components/Faq.astro'
+import LeadForm from '~/components/LeadForm.astro'
+import Footer from '~/components/Footer.astro'
+import { siteConfig } from '~/site.config'
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: siteConfig.name,
+  url: siteConfig.site,
+  email: siteConfig.email,
+  description: siteConfig.description,
+  areaServed: ['Malmö', 'Lund', 'Landskrona', 'Helsingborg', 'Kävlinge', 'Eslöv'],
+})
+---
+
+<BaseLayout>
+  <script type="application/ld+json" set:html={jsonLd} is:inline slot="head" />
+  <Header />
+  <main>
+    <Hero />
+    <UspGrid />
+    <HowItWorks />
+    <Segments />
+    <Sortiment />
+    <Faq />
+    <LeadForm />
+  </main>
+  <Footer />
+</BaseLayout>

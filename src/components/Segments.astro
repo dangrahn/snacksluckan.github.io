@@ -1,0 +1,83 @@
+---
+import MachineImage from '~/components/MachineImage.astro'
+
+const segments = [
+  {
+    title: 'Träningsanläggningar',
+    profile: 'Sport-sortiment',
+    text: 'Padel, gym utan reception, kampsport, klättring, ishallar, ridhus och simhallar. Energidryck, sportdryck och bars – precis när passet är slut.',
+  },
+  {
+    title: 'Väntmiljöer',
+    profile: 'Klassiskt sortiment',
+    text: 'Tvätthallar, bilprovning, däck- och bilverkstäder med väntrum, campingar och vandrarhem. Väntande besökare uppskattar något kallt och gott.',
+  },
+  {
+    title: 'Industri och logistik',
+    profile: 'Klassiskt sortiment',
+    text: 'Arbetsplatser med skiftgång och långt till närmaste butik. Automaten är öppen dygnet runt – även när nattskiftet går på.',
+  },
+]
+
+const criteria = [
+  'Cirka 50 eller fler besökare per dag – eller högt helgtryck',
+  'Inomhusplats med eluttag i ett naturligt stråk',
+  'Västra Skåne: Malmö, Lund, Landskrona, Helsingborg, Kävlinge och Eslöv',
+]
+---
+
+<section id="passar-er" class="mx-auto max-w-6xl px-5 py-20 md:px-8 lg:py-28">
+  <p class="mb-3 text-sm font-semibold tracking-widest text-caption uppercase">Passar er plats?</p>
+  <h2 class="max-w-2xl font-display text-3xl font-bold text-cream sm:text-4xl">
+    Vi finns där människor väntar, tränar eller arbetar
+  </h2>
+  <div class="mt-10 grid gap-5 md:grid-cols-3">
+    {
+      segments.map((segment) => (
+        <article class="rounded-3xl bg-forest p-7 ring-1 ring-sand/10">
+          <p class="inline-block rounded-full bg-teal px-3 py-1 text-xs font-semibold text-sand">
+            {segment.profile}
+          </p>
+          <h3 class="mt-4 font-display text-xl font-semibold text-cream">{segment.title}</h3>
+          <p class="mt-2 text-mild">{segment.text}</p>
+        </article>
+      ))
+    }
+  </div>
+  <div class="mt-12 grid items-center gap-10 lg:grid-cols-[1fr_20rem]">
+    <div class="rounded-3xl border border-dashed border-sand/25 p-7">
+      <h3 class="font-display text-lg font-semibold text-cream">Passar er plats in?</h3>
+      <ul class="mt-4 space-y-2.5">
+        {
+          criteria.map((criterion) => (
+            <li class="flex items-start gap-3 text-mild">
+              <svg
+                viewBox="0 0 20 20"
+                class="mt-1 h-4 w-4 shrink-0 text-amber"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="m4 10.5 4 4 8-9"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              {criterion}
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-4 text-sm text-caption">
+        Osäker? Skicka en förfrågan ändå – vi svarar snabbt och ärligt om platsen bär en automat.
+      </p>
+    </div>
+    {/* TODO: replace with real photo of a machine on location */}
+    <MachineImage
+      caption="Snacksluckan på plats – foto kommer."
+      class="mx-auto w-full max-w-xs lg:max-w-none"
+    />
+  </div>
+</section>

@@ -1,0 +1,49 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/baloo-2';
+@import '@fontsource-variable/nunito-sans';
+
+@theme {
+  --color-teal: #0a2822;
+  --color-forest: #123f30;
+  --color-sand: #d8a774;
+  --color-amber: #e29a45;
+  --color-sage: #6e8f7a;
+  --color-cream: #f5efeb;
+  --color-ember: #db6329;
+  --color-cocoa: #3f2113;
+  --color-ink: #0a231f;
+  --color-mild: #d9cbbf;
+  --color-caption: #94a8a2;
+
+  --font-display: 'Baloo 2 Variable', ui-rounded, system-ui, sans-serif;
+  --font-sans: 'Nunito Sans Variable', system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Keep anchor targets clear of the sticky header */
+  scroll-padding-top: 5.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--color-teal);
+  color: var(--color-mild);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 2px;
+}
+
+::selection {
+  background-color: var(--color-sand);
+  color: var(--color-ink);
+}

@@ -1,0 +1,63 @@
+---
+import MachineImage from '~/components/MachineImage.astro'
+
+const steps = [
+  {
+    title: 'Ni hör av er',
+    text: 'Skicka en förfrågan via formuläret så bokar vi ett kort platsbesök – förutsättningslöst.',
+  },
+  {
+    title: 'Platsbesök och sortimentsprofil',
+    text: 'Vi tittar på besöksflöde, placering och eluttag och föreslår profilen Sport eller Klassisk.',
+  },
+  {
+    title: 'Vi installerar',
+    text: 'En helfolierad, kyld automat med kort- och Swishbetalning på plats. Ni bidrar med yta och ett eluttag – inget mer.',
+  },
+  {
+    title: 'Vi fyller på och servar',
+    text: 'Påfyllningen styrs av automatens telemetri – vi kommer innan något tar slut och åtgärdar fel inom 48 timmar.',
+  },
+  {
+    title: 'Ni får rapport och provision',
+    text: 'Varje månad får ni en försäljningsrapport och 10 % av försäljningen, redovisat öppet från telemetridata.',
+  },
+]
+---
+
+<section id="sa-funkar-det" class="bg-forest/40">
+  <div
+    class="mx-auto grid max-w-6xl gap-12 px-5 py-20 md:px-8 lg:grid-cols-[1fr_22rem] lg:gap-16 lg:py-28"
+  >
+    <div>
+      <p class="mb-3 text-sm font-semibold tracking-widest text-caption uppercase">Så funkar det</p>
+      <h2 class="font-display text-3xl font-bold text-cream sm:text-4xl">
+        Från förfrågan till provision i fem steg
+      </h2>
+      <ol class="mt-10 space-y-8">
+        {
+          steps.map((step, index) => (
+            <li class="flex gap-5">
+              <span
+                class="font-display text-2xl font-bold text-sand tabular-nums"
+                aria-hidden="true"
+              >
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <div>
+                <h3 class="font-display text-lg font-semibold text-cream">{step.title}</h3>
+                <p class="mt-1 text-mild">{step.text}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+    <div class="lg:self-center">
+      {/* TODO: replace with real installation photo when available */}
+      <MachineImage
+        caption="Helfolierad automat med kort och Swish – foto från installation kommer."
+      />
+    </div>
+  </div>
+</section>

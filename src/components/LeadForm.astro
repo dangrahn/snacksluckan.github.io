@@ -1,0 +1,150 @@
+---
+import { siteConfig } from '~/site.config'
+
+const { appsScriptUrl, email } = siteConfig
+
+const businessTypes = [
+  'Träningsanläggning',
+  'Tvätthall, bilprovning eller verkstad',
+  'Camping eller vandrarhem',
+  'Industri eller logistik',
+  'Kontor',
+  'Annat',
+]
+
+const visitorRanges = [
+  'Under 50 per dag',
+  '50–150 per dag',
+  '150–400 per dag',
+  'Fler än 400 per dag',
+  'Vet ej',
+]
+
+const inputClass =
+  'w-full rounded-xl border border-sand/20 bg-teal px-4 py-3 text-cream placeholder:text-caption focus:border-amber'
+const labelClass = 'mb-1.5 block text-sm font-semibold text-cream'
+---
+
+<section id="offert" class="mx-auto max-w-6xl px-5 pb-20 md:px-8 lg:pb-28">
+  <div class="rounded-3xl bg-forest p-7 ring-1 ring-sand/10 sm:p-10 lg:p-14">
+    <div class="mx-auto max-w-2xl">
+      <p class="mb-3 text-sm font-semibold tracking-widest text-caption uppercase">Få en offert</p>
+      <h2 class="font-display text-3xl font-bold text-cream sm:text-4xl">
+        Boka ett kostnadsfritt platsbesök
+      </h2>
+      <p class="mt-3 text-mild">
+        Berätta kort om er plats så hör vi av oss inom en arbetsdag. Hellre mejl? Skriv till
+        <a href={`mailto:${email}`} class="text-sand underline hover:text-cream">{email}</a>.
+      </p>
+
+      <form id="lead-form" class="mt-8 grid gap-5 sm:grid-cols-2" novalidate>
+        <div>
+          <label for="lead-name" class={labelClass}>Namn *</label>
+          <input
+            id="lead-name"
+            name="name"
+            type="text"
+            required
+            autocomplete="name"
+            class={inputClass}
+          />
+        </div>
+        <div>
+          <label for="lead-business" class={labelClass}>Typ av verksamhet *</label>
+          <select id="lead-business" name="businessType" required class={inputClass}>
+            <option value="" disabled selected>Välj typ</option>
+            {businessTypes.map((type) => <option value={type}>{type}</option>)}
+          </select>
+        </div>
+        <div>
+          <label for="lead-city" class={labelClass}>Ort *</label>
+          <input id="lead-city" name="city" type="text" required class={inputClass} />
+        </div>
+        <div>
+          <label for="lead-visitors" class={labelClass}>Besökare per dag</label>
+          <select id="lead-visitors" name="visitors" class={inputClass}>
+            <option value="" disabled selected>Ungefärligt antal</option>
+            {visitorRanges.map((range) => <option value={range}>{range}</option>)}
+          </select>
+        </div>
+        <div>
+          <label for="lead-email" class={labelClass}>E-post *</label>
+          <input
+            id="lead-email"
+            name="email"
+            type="email"
+            required
+            autocomplete="email"
+            class={inputClass}
+          />
+        </div>
+        <div>
+          <label for="lead-phone" class={labelClass}>Telefon</label>
+          <input id="lead-phone" name="phone" type="tel" autocomplete="tel" class={inputClass} />
+        </div>
+        <div class="sm:col-span-2">
+          <label for="lead-message" class={labelClass}>Meddelande</label>
+          <textarea id="lead-message" name="message" rows="4" class={inputClass}></textarea>
+        </div>
+        <div class="absolute -left-[9999px]" aria-hidden="true">
+          <label>
+            Företagswebbplats
+            <input type="text" name="website" tabindex="-1" autocomplete="off" />
+          </label>
+        </div>
+        <div class="sm:col-span-2">
+          <button
+            id="lead-submit"
+            type="submit"
+            class="w-full rounded-full bg-amber px-7 py-3.5 font-display text-base font-semibold text-ink transition-colors hover:bg-ember hover:text-cream disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+          >
+            Skicka förfrågan
+          </button>
+          <p id="lead-status" class="mt-3 text-sm text-sand" role="status"></p>
+        </div>
+      </form>
+
+      <div id="lead-done" hidden class="mt-8 rounded-2xl border border-sand/25 p-6">
+        <h3 class="font-display text-xl font-semibold text-cream">Tack för din förfrågan!</h3>
+        <p class="mt-2 text-mild">Vi hör av oss inom en arbetsdag för att boka ett platsbesök.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline define:vars={{ appsScriptUrl, email }}>
+  const form = document.getElementById('lead-form')
+  const status = document.getElementById('lead-status')
+  const button = document.getElementById('lead-submit')
+  const done = document.getElementById('lead-done')
+  const mailFallback = `Mejla oss direkt på <a class="underline" href="mailto:${email}">${email}</a>.`
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault()
+    if (!form.reportValidity()) return
+    if (!appsScriptUrl) {
+      status.innerHTML = `Formuläret är inte aktiverat ännu. ${mailFallback}`
+      return
+    }
+    button.disabled = true
+    button.textContent = 'Skickar…'
+    status.textContent = ''
+    try {
+      // text/plain avoids a CORS preflight, which Apps Script cannot answer
+      const response = await fetch(appsScriptUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+        redirect: 'follow',
+      })
+      const result = await response.json()
+      if (!result || !result.success) throw new Error('request_failed')
+      form.hidden = true
+      done.hidden = false
+    } catch {
+      status.innerHTML = `Något gick fel. ${mailFallback}`
+      button.disabled = false
+      button.textContent = 'Skicka förfrågan'
+    }
+  })
+</script>

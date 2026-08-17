@@ -1,0 +1,21 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro'
+import Header from '~/components/Header.astro'
+import Footer from '~/components/Footer.astro'
+import { withBase } from '~/utils'
+---
+
+<BaseLayout title="Sidan finns inte – Snacksluckan">
+  <Header />
+  <main class="mx-auto flex max-w-3xl flex-col items-center px-5 py-32 text-center">
+    <h1 class="font-display text-4xl font-bold text-cream">Sidan finns inte</h1>
+    <p class="mt-4 text-mild">Luckan du letade efter är tom. Prova startsidan i stället.</p>
+    <a
+      href={withBase('')}
+      class="mt-8 rounded-full bg-amber px-7 py-3.5 font-display font-semibold text-ink transition-colors hover:bg-ember hover:text-cream"
+    >
+      Till startsidan
+    </a>
+  </main>
+  <Footer />
+</BaseLayout>

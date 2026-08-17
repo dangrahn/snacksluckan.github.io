@@ -1,0 +1,41 @@
+---
+const usps = [
+  {
+    title: 'Noll ansträngning, noll risk',
+    text: 'Vi äger automaten och varulagret, installerar, fyller på och hanterar alla kundfrågor. Ni upplåter bara yta och ett eluttag.',
+    icon: 'M12 3v3m-6.4-.4 2.1 2.1M3 12h3m12.4-6.4-2.1 2.1M21 12h-3M7 21l1.5-6h7L17 21zm1-6h8',
+  },
+  {
+    title: '10 % provision, full transparens',
+    text: 'Ni får 10 % av försäljningen, redovisad varje månad med försäljningsdata direkt från automatens telemetri.',
+    icon: 'M4 20V10m5.3 10V4m5.4 16v-8m5.3 8V7M3 20h18',
+  },
+  {
+    title: 'Fritt avtal, snabb service',
+    text: 'Tre månaders provperiod, därefter bara tre månaders ömsesidig uppsägningstid. Felavhjälpning påbörjas inom 48 timmar.',
+    icon: 'M12 6v6l4 2m5-2a9 9 0 1 1-18 0 9 9 0 0 1 18 0',
+  },
+]
+---
+
+<section class="mx-auto max-w-6xl px-5 pb-20 md:px-8 lg:pb-28">
+  <div class="grid gap-5 md:grid-cols-3">
+    {
+      usps.map((usp) => (
+        <article class="rounded-3xl bg-forest p-7 ring-1 ring-sand/10">
+          <svg viewBox="0 0 24 24" class="h-9 w-9 text-sand" fill="none" aria-hidden="true">
+            <path
+              d={usp.icon}
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <h2 class="mt-4 font-display text-xl font-semibold text-cream">{usp.title}</h2>
+          <p class="mt-2 text-mild">{usp.text}</p>
+        </article>
+      ))
+    }
+  </div>
+</section>

@@ -1,0 +1,45 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro'
+import Header from '~/components/Header.astro'
+import Footer from '~/components/Footer.astro'
+import { siteConfig } from '~/site.config'
+---
+
+<BaseLayout
+  title={`Integritetspolicy – ${siteConfig.name}`}
+  description="Så hanterar Snacksluckan personuppgifter som skickas via offertformuläret."
+>
+  <Header />
+  <main class="mx-auto max-w-3xl px-5 py-16 md:px-8 lg:py-24">
+    <h1 class="font-display text-3xl font-bold text-cream sm:text-4xl">Integritetspolicy</h1>
+    <div class="mt-8 space-y-6 text-mild">
+      <section>
+        <h2 class="font-display text-xl font-semibold text-cream">Vilka uppgifter samlar vi in?</h2>
+        <p class="mt-2">
+          När du skickar en förfrågan via formuläret på webbplatsen samlar vi in de uppgifter du
+          anger: namn, typ av verksamhet, ort, uppskattat antal besökare, e-postadress, eventuellt
+          telefonnummer och meddelande. Webbplatsen använder inga cookies och ingen besöksstatistik.
+        </p>
+      </section>
+      <section>
+        <h2 class="font-display text-xl font-semibold text-cream">Varför och hur länge?</h2>
+        <p class="mt-2">
+          Uppgifterna används enbart för att kontakta dig om din förfrågan och ta fram en offert. De
+          skickas som e-post till oss och lagras hos Google (Gmail/Google Sheets) inom ramen för
+          deras tjänster. Vi raderar uppgifterna när de inte längre behövs för ärendet.
+        </p>
+      </section>
+      <section>
+        <h2 class="font-display text-xl font-semibold text-cream">Dina rättigheter</h2>
+        <p class="mt-2">
+          Du kan när som helst begära utdrag, rättelse eller radering av dina uppgifter. Kontakta
+          oss på
+          <a href={`mailto:${siteConfig.email}`} class="text-sand underline hover:text-cream">
+            {siteConfig.email}
+          </a>.
+        </p>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

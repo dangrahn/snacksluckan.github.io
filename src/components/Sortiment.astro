@@ -1,0 +1,88 @@
+---
+const profiles = [
+  {
+    name: 'Sport',
+    tagline: 'För träningsmiljöer',
+    accent: 'bg-amber text-ink',
+    categories: [
+      {
+        heading: 'Dryck',
+        items: [
+          'Energidryck i flera varianter',
+          'Sportdryck och smaksatt vatten',
+          'Proteindryck',
+          'Sockerfri läsk',
+        ],
+      },
+      {
+        heading: 'Snacks',
+        items: [
+          'Proteinbars och energibars',
+          'Nötter',
+          'Sockerfritt godis',
+          'En klassisk chokladbit',
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Klassisk',
+    tagline: 'För väntrum och arbetsplatser',
+    accent: 'bg-sage text-ink',
+    categories: [
+      { heading: 'Dryck', items: ['Läsk – storsäljarna', 'Energidryck', 'Vatten', 'Juice'] },
+      {
+        heading: 'Snacks',
+        items: ['Chips och snacks', 'Chokladbitar', 'Godispåsar', 'Kex och tuggummi'],
+      },
+    ],
+  },
+]
+---
+
+<section id="sortiment" class="bg-cream text-ink">
+  <div class="mx-auto max-w-6xl px-5 py-20 md:px-8 lg:py-28">
+    <p class="mb-3 text-sm font-semibold tracking-widest text-forest uppercase">Sortiment</p>
+    <h2 class="max-w-2xl font-display text-3xl font-bold text-ink sm:text-4xl">
+      Två profiler – rätt varor på rätt plats
+    </h2>
+    <div class="mt-10 grid gap-5 md:grid-cols-2">
+      {
+        profiles.map((profile) => (
+          <article class="rounded-3xl bg-white/70 p-8 ring-1 ring-ink/10">
+            <div class="flex items-center gap-3">
+              <span
+                class={`rounded-full px-4 py-1 font-display text-sm font-semibold ${profile.accent}`}
+              >
+                {profile.name}
+              </span>
+              <span class="text-sm text-forest">{profile.tagline}</span>
+            </div>
+            <div class="mt-6 grid gap-6 sm:grid-cols-2">
+              {profile.categories.map((category) => (
+                <div>
+                  <h3 class="font-display font-semibold text-forest">{category.heading}</h3>
+                  <ul class="mt-2 space-y-1.5 text-ink/80">
+                    {category.items.map((item) => (
+                      <li class="flex items-start gap-2">
+                        <span
+                          class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sand"
+                          aria-hidden="true"
+                        />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+    <p class="mt-8 max-w-2xl text-forest">
+      Sortimentet justeras löpande efter försäljningsdata – långsamma artiklar byts ut och
+      storsäljarna får fler fack. Endast förpackade varor med lång hållbarhet.
+    </p>
+  </div>
+</section>

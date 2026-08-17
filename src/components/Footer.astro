@@ -1,0 +1,35 @@
+---
+import { siteConfig } from '~/site.config'
+import { withBase } from '~/utils'
+import LogoMark from '~/components/LogoMark.astro'
+---
+
+<footer class="border-t border-sand/10 bg-ink">
+  <div
+    class="mx-auto flex max-w-6xl flex-col gap-6 px-5 py-12 md:flex-row md:items-start md:justify-between md:px-8"
+  >
+    <div class="flex flex-col gap-3">
+      <a href={withBase('')} class="flex items-center gap-2.5 text-sand">
+        <LogoMark class="h-7 w-7" />
+        <span class="font-display text-lg font-semibold">{siteConfig.name}</span>
+      </a>
+      <p class="max-w-xs text-sm text-caption">
+        Snacks, dryck och energi – när du behöver det. Varuautomater utan kostnad för er som
+        platsägare.
+      </p>
+    </div>
+    <div class="flex flex-col gap-2 text-sm">
+      <a href={`mailto:${siteConfig.email}`} class="text-sand hover:text-cream">
+        {siteConfig.email}
+      </a>
+      <p class="text-caption">{siteConfig.region}</p>
+      <a href={withBase('integritetspolicy')} class="text-caption underline hover:text-cream">
+        Integritetspolicy
+      </a>
+    </div>
+  </div>
+  <div class="border-t border-sand/10 py-4 text-center text-xs text-caption">
+    © {new Date().getFullYear()}
+    {siteConfig.name}
+  </div>
+</footer>

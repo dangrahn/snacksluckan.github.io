@@ -1,0 +1,79 @@
+---
+const faqs = [
+  {
+    question: 'Vad kostar det oss?',
+    answer:
+      'Ingenting. Vi står för automat, varulager, installation och service. Ni betalar aldrig något.',
+  },
+  {
+    question: 'Vad krävs av oss?',
+    answer: 'En kvadratmeter golvyta inomhus och ett vanligt eluttag. Det är allt.',
+  },
+  {
+    question: 'Hur mycket tjänar vi?',
+    answer:
+      'Ni får 10 % av automatens försäljning, utbetald varje månad tillsammans med en försäljningsrapport.',
+  },
+  {
+    question: 'Hur binder vi upp oss?',
+    answer:
+      'Tre månaders provperiod utan förpliktelser. Därefter löper avtalet tillsvidare med tre månaders ömsesidig uppsägningstid.',
+  },
+  {
+    question: 'Vem fyller på och servar automaten?',
+    answer:
+      'Vi. Påfyllningen styrs av automatens telemetri så att den aldrig står tom, och fel börjar åtgärdas inom 48 timmar.',
+  },
+  {
+    question: 'Hur betalar besökarna?',
+    answer: 'Med kort eller Swish. Automaten är helt kontantfri och öppen dygnet runt.',
+  },
+  {
+    question: 'Hur vet vi vad som sålts?',
+    answer:
+      'Varje månad får ni en rapport med försäljningsdata direkt från automatens telemetri – samma underlag som er provision beräknas på.',
+  },
+]
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+  })),
+})
+---
+
+<section id="fragor" class="mx-auto max-w-3xl px-5 py-20 md:px-8 lg:py-28">
+  <p class="mb-3 text-sm font-semibold tracking-widest text-caption uppercase">Vanliga frågor</p>
+  <h2 class="font-display text-3xl font-bold text-cream sm:text-4xl">Det viktigaste, kort</h2>
+  <div class="mt-8">
+    {
+      faqs.map((faq) => (
+        <details class="group border-b border-sand/15 py-4">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-lg font-semibold text-cream [&::-webkit-details-marker]:hidden">
+            {faq.question}
+            <svg
+              viewBox="0 0 20 20"
+              class="h-5 w-5 shrink-0 text-sand transition-transform group-open:rotate-45"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M10 4v12M4 10h12"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </summary>
+          <p class="mt-3 pr-9 text-mild">{faq.answer}</p>
+        </details>
+      ))
+    }
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={jsonLd} is:inline />
