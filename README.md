@@ -1,6 +1,6 @@
 # snacksluckan.se
 
-Marketing site for Snacksluckan – vending machines in western Skåne. Built with Astro 5 + Tailwind CSS v4, deployed to GitHub Pages.
+Marketing site for Snacksluckan – vending machines in southern Sweden (Skåne, Halland, Blekinge). Built with Astro 5 + Tailwind CSS v4, deployed to GitHub Pages.
 
 ## Development
 
